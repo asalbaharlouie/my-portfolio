@@ -117,7 +117,11 @@ sections.forEach((section) => sectionObserver.observe(section));
   frame = 0;
   if(!dialog.open || document.hidden || !ctx) return;
   const dt = Math.min((now-last)/1000 || .016,.04); last=now;
-  const speed = phase==='flying' ? .5+Math.min((now-started)/1300,1)*2.4 : .018;
+  const progress = Math.min(Math.max((now-started)/2600,0),1);
+  const ramp = Math.min(progress / .55, 1);
+  const eased = ramp*ramp*(3-2*ramp);
+  const landing = 1 - .65*Math.pow(Math.max(0,(progress-.72)/.28),2);
+  const speed = phase==='flying' ? (.018 + eased*2.8)*landing : .018;
   ctx.fillStyle='#080812'; ctx.fillRect(0,0,w,h);
   const size=Math.max(w,h)*.6;
   for(const s of stars) {
@@ -143,7 +147,7 @@ sections.forEach((section) => sectionObserver.observe(section));
   document.body.classList.add('home-arrival');
   dialog.classList.add('is-arriving');
   status.textContent='Welcome aboard. You have arrived.';
-  finishTimer=setTimeout(close,500);
+  finishTimer=setTimeout(close,800);
  }
  function open(){
   if(typeof dialog.showModal!=='function')return;
