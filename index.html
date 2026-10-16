@@ -13,6 +13,49 @@
   <script src="script.js" defer></script>
 </head>
 <body>
+<dialog class="space-intro" aria-labelledby="intro-title" aria-describedby="intro-copy">
+ <canvas id="flight-stars" aria-hidden="true"></canvas>
+ <div class="cockpit" aria-hidden="true"><span>0xASAL // FLIGHT DECK</span><span>DESTINATION: HOME</span></div>
+ <div class="intro-panel">
+  <p class="transmission"><span class="live-dot"></span> INCOMING TRANSMISSION / 001</p>
+  <div class="alien-scene" aria-hidden="true"><div class="alien-orbit"></div>
+   <svg viewBox="0 0 300 280" class="alien" fill="none"><defs><linearGradient id="alien-skin" x2="1" y2="1"><stop stop-color="#baffdf"/><stop offset="1" stop-color="#57b9bd"/></linearGradient></defs>
+    <ellipse cx="150" cy="259" rx="65" ry="9" fill="#ba8aff" opacity=".15"/>
+    <path d="M117 215L112 249M181 215L186 249" stroke="#c2a7ec" stroke-width="23" stroke-linecap="round"/>
+    <path d="M112 175L92 213" stroke="#c2a7ec" stroke-width="23" stroke-linecap="round"/>
+    <g class="alien-wave"><path d="M185 177Q214 185 226 143" stroke="#c2a7ec" stroke-width="22" stroke-linecap="round"/><path d="M225 144L216 123M227 141L229 116M231 145L243 128" stroke="#9af3d7" stroke-width="8" stroke-linecap="round"/></g>
+    <path d="M115 166Q150 156 185 166L199 221Q150 244 101 221Z" fill="#bda3e8" stroke="#e3d1ff" stroke-width="3"/>
+    <rect x="130" y="190" width="40" height="27" rx="7" fill="#29203e"/><circle cx="141" cy="203" r="4" fill="#92f6d5"/><path d="M152 201H161M152 207H158" stroke="#d9c1ff"/>
+    <circle cx="150" cy="106" r="76" fill="#b79fff" fill-opacity=".07" stroke="#d0baff" stroke-width="3"/>
+    <path d="M107 72Q150 41 193 72Q216 113 174 151Q150 174 126 151Q84 113 107 72" fill="url(#alien-skin)"/>
+    <g class="alien-eyes"><ellipse cx="126" cy="108" rx="12" ry="22" transform="rotate(-25 126 108)" fill="#11172b"/><ellipse cx="175" cy="108" rx="12" ry="22" transform="rotate(25 175 108)" fill="#11172b"/><circle cx="123" cy="100" r="3" fill="white"/><circle cx="173" cy="100" r="3" fill="white"/></g>
+    <path d="M140 140Q150 148 160 140" stroke="#26636a" stroke-width="3" stroke-linecap="round"/><path d="M100 63Q117 44 142 42" stroke="#fff" stroke-opacity=".7" stroke-width="4" stroke-linecap="round"/>
+   </svg>
+  </div>
+  <p class="intro-coordinate">0xASAL / PERSONAL UNIVERSE</p>
+  <h2 id="intro-title">Greetings, <span class="gradient-text">Earthling!</span></h2>
+  <p id="intro-copy">You've just entered Asal's universe.<br>Where code meets curiosity and exploration never ends.</p>
+  <p class="intro-ready">Your seat is ready. Let's explore.</p>
+  <div class="intro-actions"><button class="button button-primary" id="enter-universe" autofocus>Enter the Universe ↗</button><button class="button button-ghost" id="skip-intro">Skip Intro</button></div>
+  <p class="intro-footnote">FLIGHT 0x01 · EARTH → ASAL'S UNIVERSE</p>
+ </div>
+ <div class="flight-scene" aria-hidden="true">
+  <div class="destination-ring"></div>
+  <svg class="spaceship" viewBox="0 0 280 340" fill="none"><defs><linearGradient id="hull" x2="1" y2="1"><stop stop-color="#faf2ff"/><stop offset=".45" stop-color="#b0a2e3"/><stop offset="1" stop-color="#493973"/></linearGradient><linearGradient id="engine" x2="0" y2="1"><stop stop-color="#edffff"/><stop offset=".25" stop-color="#85f3f0"/><stop offset="1" stop-color="#8b52ff" stop-opacity="0"/></linearGradient></defs>
+   <path class="engine-flame" d="M115 221Q140 405 165 221Z" fill="url(#engine)"/>
+   <path d="M117 105L32 239L108 216L140 242L172 216L248 239L163 105Z" fill="url(#hull)" stroke="#c7b7ff" stroke-width="2"/>
+   <path d="M140 22Q98 90 111 220L140 239L169 220Q182 90 140 22Z" fill="url(#hull)" stroke="#e9dcff" stroke-width="2"/>
+   <path d="M140 69Q122 100 125 133Q140 146 155 133Q158 100 140 69Z" fill="#12172d" stroke="#84eced" stroke-width="3"/>
+   <path d="M76 191L57 220M204 191L223 220" stroke="#91fff2" stroke-width="4" stroke-linecap="round"/>
+   <path d="M140 165V211" stroke="#715e9d" stroke-width="2"/>
+  </svg>
+  <p class="flight-message">NEXT STOP <strong>Asal's universe.</strong><span>CURIOUS MINDS WELCOME</span></p>
+ </div>
+ <button class="flight-skip" type="button">Skip flight ↗</button>
+ <p class="flight-status" role="status" aria-live="polite"></p>
+</dialog>
+<div class="cosmic-field" aria-hidden="true"></div>
+
   <div class="noise" aria-hidden="true"></div>
   <div class="cursor-glow" aria-hidden="true"></div>
   <header class="nav-wrap">
@@ -88,6 +131,6 @@
     </section>
   </main>
 
-  <footer class="footer section-shell"><a class="brand" href="#home"><span class="brand-mark">A<span>✳</span></span><span><span class="muted">0x</span>ASAL</span></a><p>BUILT WITH CURIOSITY, PYTHON & A SECURITY MINDSET.</p><a class="back-top" href="#home">BACK TO TOP ↑</a><span class="footer-year">© <span id="year"></span> ASAL BAHARLOUIE</span></footer>
+  <footer class="footer section-shell"><a class="brand" href="#home"><span class="brand-mark">A<span>✳</span></span><span><span class="muted">0x</span>ASAL</span></a><p>BUILT WITH CURIOSITY, PYTHON & A SECURITY MINDSET.</p><button class="replay-intro" type="button">Replay flight ✦</button><a class="back-top" href="#home">BACK TO TOP ↑</a><span class="footer-year">© <span id="year"></span> ASAL BAHARLOUIE</span></footer>
 </body>
 </html>
